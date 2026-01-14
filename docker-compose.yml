@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jenkins-pytest
+    ports:
+      - "8080:8080"      # Jenkins web UI
+      - "50000:50000"    # Jenkins agent port
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ./:/workspace     # Mount project directory
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - JENKINS_ADMIN_ID=admin
+      - JENKINS_ADMIN_PASSWORD=admin123
+    networks:
+      - jenkins-network
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
+    driver: local
+
+networks:
+  jenkins-network:
+    driver: bridge
