@@ -29,6 +29,7 @@ htmlcov/
 report.html
 report.json
 .tox/
+test-results/
 
 # Virtual environments
 venv/

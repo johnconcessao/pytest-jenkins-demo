@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   jenkins:
     build:
@@ -11,7 +9,7 @@ services:
       - "50000:50000"    # Jenkins agent port
     volumes:
       - jenkins_home:/var/jenkins_home
-      - ./:/workspace     # Mount project directory
+      - /Users/johnpradeepconcessao/CODE_BASE/pytest-jenkins-demo:/workspace     # Mount project directory to /workspace
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
       - JENKINS_ADMIN_ID=admin
